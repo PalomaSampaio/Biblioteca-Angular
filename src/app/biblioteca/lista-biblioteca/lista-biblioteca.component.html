@@ -1,0 +1,70 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary float-end m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Livros Cadastrados
+  </button>
+
+   <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#exampleModalNova"
+    (click)="modalAdd()">
+    Cadastro de Livros
+  </button>
+
+<table class="table table-striped">
+    <thead>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Subtítulo</th>
+        <th>Resumo</th>
+        <th>Quantidade de Páginas</th>
+        <th>Data de Publicação</th>
+        <th>Editora</th>
+        <th>Edição</th>
+        <th>Autores</th>
+    </thead>
+    <tbody>
+        <tr *ngfor="let item of bibliotecaList$|async">
+            <td>{{item.id}}</td>
+            <td>{{bibliotecaListMap.get(item.bibliotecaList)}}</td>
+            <td>{{item.titulo}}</td>
+            <td>{{item.subtitulo}}</td>
+            <td>{{item.resumo}}</td>
+            <td>{{item.quantidadeDePaginas}}</td>
+            <td>{{item.dataDaPublicacao}}</td>
+            <td>{{item.editora}}</td>
+            <td>{{item.edicao}}</td>
+            <td>{{item.autores}}</td>
+        </tr>
+    </tbody>
+</table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Informações</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p *ngFor="let tipo of bibliotecaList$|async">{{tipo.id}} - {{tipo.titulo}} - {{tipo.subtitulo}} - {{tipo.resumo}} - {{tipo.quantidadeDePaginas}} - {{tipo.dataDaPublicacao}} - {{tipo.editora}} - {{tipo.edicao}} - {{tipo.autores}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalNova" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <app-add-edit-biblioteca></app-add-edit-biblioteca>       
+        </div>
+      </div>
+    </div>
+  </div>
